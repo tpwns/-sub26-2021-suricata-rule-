@@ -1,0 +1,35 @@
+
+alert tcp any any -> any 80 (msg:"gilgil.net access"; content:"GET /"; content:"Host: "; content:"gilgil.net"; sid:10001; rev:1;)
+alert tcp any any -> any 80 (msg:"netflix.com access"; content:"GET /"; content:"Host: "; content:"netflix.com"; sid:10002; rev:1;)
+alert tcp any any -> any 80 (msg:"qt.io access"; content:"GET /"; content:"Host: "; content:"qt.io"; fast_pattern; sid:10003; rev:1;)
+alert tcp any any -> any 80 (msg:"korea.ac.kr access"; content:"GET /"; content:"Host: "; content:"korea.ac.kr"; fast_pattern; sid:10004; rev:1;)
+alert tcp any any -> any 80 (msg:"test.gilgil.net access"; content:"GET /"; content:"Host: "; content:"test.gilgil.net"; fast_pattern; sid:10005; rev:1;)
+alert tcp any any -> any 80 (msg:"me.go.kr access"; content:"GET /"; content:"Host: "; content:"me.go.kr"; fast_pattern; sid:10006; rev:1;)
+alert tcp any any -> any 80 (msg:"molit.go.kr access"; content:"GET /"; content:"Host: "; content:"molit.go.kr"; fast_pattern; sid:10007; rev:1;)
+alert tcp any any -> any 80 (msg:"kostat.go.kr access"; content:"GET /"; content:"Host: "; content:"kostat.go.kr"; fast_pattern; sid:10008; rev:1;)
+
+alert tcp any any -> any 443 (msg:"netflix.com access"; tls.sni; content:"netflix.com"; fast_pattern; sid:100021; rev:1;)
+alert tcp any any -> any 443 (msg:"qt.io access"; tls.sni; content:"qt.io"; fast_pattern; sid:100031; rev:1;)
+
+alert tcp any any -> any 443 (msg:"google.com access"; tls.sni; content:"google.com"; fast_pattern; sid:10009; rev:1;)
+alert tcp any any -> any 443 (msg:"naver.com access"; tls.sni; content:"naver.com"; fast_pattern; sid:10010; rev:1;)
+alert tcp any any -> any 443 (msg:"yahoo.com access"; tls.sni; content:"yahoo.com"; fast_pattern; sid:10011; rev:1;)
+alert tcp any any -> any 443 (msg:"youtube.com access"; tls.sni; content:"youtube.com"; fast_pattern; sid:10012; rev:1;)
+alert tcp any any -> any 443 (msg:"daum.net access"; tls.sni; content:"daum.net"; fast_pattern; sid:10013; rev:1;)
+alert tcp any any -> any 443 (msg:"coupang.com access"; tls.sni; content:"coupang.com"; fast_pattern; sid:10014; rev:1;)
+alert tcp any any -> any 443 (msg:"facebook.com access"; tls.sni; content:"facebook.com"; fast_pattern; sid:10015; rev:1;)
+alert tcp any any -> any 443 (msg:"kakao.com access"; tls.sni; content:"kakao.com"; fast_pattern; sid:10016; rev:1;)
+alert tcp any any -> any 443 (msg:"amazone.com access"; tls.sni; content:"amazone.com"; fast_pattern; sid:10017; rev:1;)
+alert tcp any any -> any 443 (msg:"wikipedia.org access"; tls.sni; content:"wikipedia.org"; fast_pattern; sid:10018; rev:1;)
+alert tcp any any -> any 443 (msg:"instargram.com access"; tls.sni; content:"instargram.com"; fast_pattern; sid:10019; rev:1;)
+alert tcp any any -> any 443 (msg:"zoom.us access"; tls.sni; content:"zoom.us"; fast_pattern; sid:10020; rev:1;)
+
+
+
+
+
+
+
+## alert tcp sport dport -> sport dport (로그메세지; 콘텐츠:콘텐츠 조건이 다 있으면 sid:10001을 찍어라)
+## fastpattern : suricata에서 아호 코라식을 돌 때 제일 먼저 체크하라는 패턴 (원래는 아호코라식은 패턴중에서 가장 긴 패턴을 뽑아서 아호코라식을 돈 후 후보를 찾는다.)
+## 아호코라식으로 후보군 몇개의 패턴을 찾은 이후에는 후보군을 sequential하게 돌면서 일일히 체크
